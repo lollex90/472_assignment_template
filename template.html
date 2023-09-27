@@ -409,11 +409,11 @@ print(&quot;This code chunk is visible in this section.&quot;)</code></pre>
 <div id="appendix-all-code-in-this-assignment" class="section level2">
 <h2>Appendix: All code in this assignment</h2>
 <pre class="r"><code># this chunk contains code that sets global options for the entire .Rmd. 
-# We use include=FALSE to suppress it from the top of the document, but it will still appear in the appendix. 
+# we use include=FALSE to suppress it from the top of the document, but it will still appear in the appendix. 
 
 knitr::opts_chunk$set(echo = FALSE) # actually set the global chunk options. 
-# We set echo=FALSE to suppress code such that it by default does not appear throughout the document. 
-# Note: this is different from .Rmd default
+# we set echo=FALSE to suppress code such that it by default does not appear throughout the document. 
+# note: this is different from .Rmd default
 set.seed(89) # set a seed for R&#39;s psuedo-randomiser, for replicability.
 x &lt;- rnorm(100) # randomly draw 100 obs from normal distribution, save as object
 y &lt;- rnorm(100) 

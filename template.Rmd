@@ -7,11 +7,11 @@ output: html_document
 
 ```{r setup, include=FALSE} 
 # this chunk contains code that sets global options for the entire .Rmd. 
-# We use include=FALSE to suppress it from the top of the document, but it will still appear in the appendix. 
+# we use include=FALSE to suppress it from the top of the document, but it will still appear in the appendix. 
 
 knitr::opts_chunk$set(echo = FALSE) # actually set the global chunk options. 
-# We set echo=FALSE to suppress code such that it by default does not appear throughout the document. 
-# Note: this is different from .Rmd default
+# we set echo=FALSE to suppress code such that it by default does not appear throughout the document. 
+# note: this is different from .Rmd default
 ```
 
 This document contains the necessary commands and layout to meet the formatting requirements for MY472. You should use the template.Rmd file as the basis for your own answers to the assigned exercises.
