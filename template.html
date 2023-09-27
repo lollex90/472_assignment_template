@@ -365,14 +365,16 @@ as the basis for your own answers to the assigned exercises.</p>
 <li><p>You must present all results in full sentences, as you would in a
 report or academic piece of writing</p>
 <ul>
-<li>If the exercise includes generating a table or figure, you should
+<li>If the exercise requires generating a table or figure, you should
 include at least one sentence introducing and explaining it. E.g. “The
 table below reports the counts of Wikipedia articles mentioning the LSE,
 by type of article.”</li>
 </ul></li>
 <li><p>Unless stated otherwise, all code used to answer the exercises
-should be included at the end of the script</p></li>
-<li><p>Code should be annotated with comments, to help the marker
+should be included as a code appendix at the end of the script. This
+formatting can be achieved by following the guidance in this template
+file.</p></li>
+<li><p>All code should be annotated with comments, to help the marker
 understand what you have done</p></li>
 <li><p>Your output should be replicable. Any result/table/figure that
 cannot be traced back to your code will not be marked</p></li>
@@ -398,19 +400,30 @@ the chunk option <code>echo = TRUE</code> to a specific R chunk. When
 <code>echo=TRUE</code>, your code is presented in-line with any output
 displayed afterwards. The same code will also be included in the
 appendix at the bottom of the document (which is fine).</p>
-<pre class="r"><code># Make sure to annotate your code effectively
-print(&quot;This command is visible in-line.&quot;)</code></pre>
-<pre><code>## [1] &quot;This command is visible in-line.&quot;</code></pre>
+<pre class="r"><code># {[language] [chunk_name], [chunk_options]}
+# here we use echo=TRUE to override our global options and make the chunk appear exactly here. 
+
+print(&quot;This code chunk is visible in this section.&quot;)</code></pre>
+<pre><code>## [1] &quot;This code chunk is visible in this section.&quot;</code></pre>
 </div>
 <div id="appendix-all-code-in-this-assignment" class="section level2">
 <h2>Appendix: All code in this assignment</h2>
-<pre class="r"><code>knitr::opts_chunk$set(echo = FALSE) # Note: different from .Rmd default
-set.seed(89)
-x &lt;- rnorm(100)
-y &lt;- rnorm(100)
-plot(x,y)
-# Make sure to annotate your code effectively
-print(&quot;This command is visible in-line.&quot;)</code></pre>
+<pre class="r"><code># this chunk contains code that sets global options for the entire .Rmd. 
+# We use include=FALSE to suppress it from the top of the document, but it will still appear in the appendix. 
+
+knitr::opts_chunk$set(echo = FALSE) # actually set the global chunk options. 
+# We set echo=FALSE to suppress code such that it by default does not appear throughout the document. 
+# Note: this is different from .Rmd default
+set.seed(89) # set a seed for R&#39;s psuedo-randomiser, for replicability.
+x &lt;- rnorm(100) # randomly draw 100 obs from normal distribution, save as object
+y &lt;- rnorm(100) 
+plot(x,y) # two-way scatterplot using R&#39;s default plotting
+# {[language] [chunk_name], [chunk_options]}
+# here we use echo=TRUE to override our global options and make the chunk appear exactly here. 
+
+print(&quot;This code chunk is visible in this section.&quot;)
+# this chunk generates the complete code appendix. 
+# eval=FALSE tells R not to run (``evaluate&#39;&#39;) the code here (it was already run before).</code></pre>
 </div>
 
 
