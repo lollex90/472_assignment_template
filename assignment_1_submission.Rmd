@@ -1,0 +1,64 @@
+---
+title: "Assignment 1 Solution"
+output: html_document
+date: "2023-10-09"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+## Exercise 1
+
+My forked version can be found at https://github.com/lollex90/472_assignment_template
+
+## Exercise 2
+
+The dataset I picked is called "iris". The dataset is tidy. There are 5 variables (Sepal.Length, Sepal.Width, Petal.Length, Petal.Width and species), and all of them form a separate column. Each row corresponds to one observation (ie. one flower) and each cell in the data table contains one unique datapoint. 
+
+```{r}
+data("iris")
+head(iris)
+```
+
+To make this data set untidy, I make it longer by merging sepal.length and sepal.width columns and adding another column called sepal.dimension (which takes the value of "length" or "width"). Doing this, I violate the first principle of tidy data - the values for sepal.width and sepal.length are now stored in the same column.
+
+```{r}
+iris_untidy <- iris %>% 
+  pivot_longer(cols = Sepal.Length:Sepal.Width, 
+               names_to = c("Sepal.Dimension"))
+
+names(iris_untidy)[5] <- "Sepal.Dimension.Value"
+head(iris_untidy)
+```
+
+## Exercise 3
+
+The second dataset I picked is called "swiss". My summary captures the differences in fertility and child mortality between predominantly Catholic and predominantly Protestant provinces. We can immediately see that Catholic provinces are more fertile than Protestant but the child mortality rate is also highe there. Finally, I merge these two variables to capture what might called "Long-term fertility" ie. fertility discounted by child mortality. This variable may be a better indicator of what a typical family in a province would look like than a simple fertility rate.   
+
+```{r, echo = TRUE}
+data(swiss)
+
+swiss_summary_by_religion <- swiss %>% 
+  # create a new binary variable describing the dominant religion
+  mutate(Dominant.Religion = if_else(Catholic >= 50, "Catholic", "Protestant")) %>% 
+  # group by the dominant religion
+  group_by(Dominant.Religion) %>% 
+  # compute mean fertility and child mortality among provinces with the same religion
+  summarise(Mean.Fertility = mean(Fertility), 
+            Mean.Infant.Mortality = mean(Infant.Mortality)) %>%
+  # create a new group-level variable based on the means
+  mutate(Mean.Fertility.Discounted = Mean.Fertility * (100 - Mean.Infant.Mortality)/100)
+
+swiss_summary_by_religion
+```
+
+
+
+## Appendix
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+
+```
+
